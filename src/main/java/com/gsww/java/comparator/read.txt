@@ -1,0 +1,22 @@
+Comparable & Comparator 都是用来实现集合中元素的比较、排序的，
+     只是 Comparable 是在集合内部定义的方法实现的排序，  Comparator 是在集合外部实现的排序，
+     所以，如想实现排序，就需要在集合外定义 Comparator 接口的方法或在集合内实现 Comparable 接口的方法。
+Comparable
+	Comparable 定义在 Person类的内部:
+    public class Persion implements Comparable {..比较Person的大小..},
+       因为已经实现了比较器,那么我们的Person现在是一个可以比较大小的对象了,它的比较功能和String完全一样,可以随时随地的拿来
+比较大小,因为Person现在自身就是有大小之分的。Collections.sort(personList)可以得到正确的结果。
+
+Comparator
+	Comparator 是定义在Person的外部的, 此时我们的Person类的结构不需要有任何变化,如
+	public class Person{ String name; int age },
+	然后我们另外定义一个比较器:
+    public PersonComparator implements Comparator() {..比较Person的大小..},
+         在PersonComparator里面实现了怎么比较两个Person的大小. 所以,用这种方法,当我们要对一个 personList进行排序的时候, 
+         我们除了了要传递personList过去, 还需要把PersonComparator传递过去,因为怎么比较Person的大小是在PersonComparator
+        里面实现的
+总结：
+       两种方法各有优劣, 用Comparable 简单, 只要实现Comparable 接口的对象直接就成为一个可以比较的对象,
+但是需要修改源代码, 用Comparator 的好处是不需要修改源代码, 而是另外实现一个比较器, 当某个自定义
+的对象需要作比较的时候,把比较器和对象一起传递过去就可以比大小了, 并且在Comparator 里面用户可以自
+己实现复杂的可以通用的逻辑,使其可以匹配一些比较简单的对象,那样就可以节省很多重复劳动了

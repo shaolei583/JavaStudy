@@ -1,0 +1,4 @@
+可变参数 
+	1.int...nums 相当于int[] nums
+	2.可以传入离散值，也可以传入数组
+	3.如果有多个参数，可变参数必须放在最后：public int sum(String str,int...a);
